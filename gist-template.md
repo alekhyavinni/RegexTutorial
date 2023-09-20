@@ -142,12 +142,12 @@ It's worth noting that the regex expression explained in this tutorial does not 
 ### Character Escapes
 Character escapes in regular expressions are used to match specific characters or character classes. Here are the character escapes for the flags mentioned in the previous response:
 
- `\i`: Case-insensitive matching.
- `\g`: Searches for all occurrences.
- `\m`: Multiline mode.
- `\s`: Dotall mode (matches newline characters with `.`).
- `\u`: Unicode support.
- `\y`: Sticky mode.
+- `\i`: Case-insensitive matching.
+- `\g`: Searches for all occurrences.
+-`\m`: Multiline mode.
+- `\s`: Dotall mode (matches newline characters with `.`).
+- `\u`: Unicode support.
+- `\y`: Sticky mode.
 
 These escapes are used to enable or disable the corresponding flag's behavior within a regular expression.
 
