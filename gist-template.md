@@ -92,6 +92,16 @@ In the regular expression `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$`, the
 These capturing groups allow you to extract and work with specific segments of the matched email address when using this regular expression for tasks like validation or data extraction.
 
 ### Bracket Expressions
+`[]` define a character or group range and stand for a single character. In the context of the regular expression covered in this tutorial, these brackets serve to delineate each character class. Any character specified within the brackets can be a valid match.
+
+For instance: `[a-z0-9_\.-]` can match any of the following:
+- Any lowercase letter from `a` to `z`
+- Any digit from `0` to `9`
+- An underscore `_`
+- A period `.`
+- A dash `-`
+
+These brackets, when used in a regular expression, offer flexibility in specifying acceptable characters or character ranges for matching purposes.
 
 ### Character Classes
 
