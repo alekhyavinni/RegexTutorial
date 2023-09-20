@@ -4,6 +4,8 @@ Regular expressions, often referred to as regex, refers to a distinct string usu
 
 ## Summary
 
+This tutorial is created by [Alekhya vinni](#about-me) 
+
 This tutorial will be covering the regex expression used for both matching and validating an email:
 
 `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$`
