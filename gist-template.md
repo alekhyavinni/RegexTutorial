@@ -9,16 +9,6 @@ This tutorial will be covering the regex expression used for both matching and v
 `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$`
 
 "Consider you're a software developer tasked with identifying insecurely used email addresses within a codebase. Employing the regular expression provided below will expedite the process of identifying these email addresses. You can also utilize this regular expression as a string in your codebase to validate email addresses. By doing so, you ensure that when users submit forms requiring valid email addresses, they must adhere to a specific format: a minimum number of characters, followed by the '@' symbol, followed by a domain name with a variable length, and ending with a domain extension (e.g., .com, .net, .dev) of between 2 and 6 characters."
-## Table of Contents
-
-- [Anchors](#anchors)
-- [Quantifiers](#quantifiers)
-- [Grouping Constructs](#grouping-constructs)
-- [Bracket Expressions](#bracket-expressions)
-- [Character Classes](#character-classes)
-- [The OR Operator](#the-or-operator)
-- [Flags](#flags)
-- [Character Escapes](#character-escapes)
 
 ## Regex Components
 
@@ -52,11 +42,54 @@ Here's a breakdown of the components of the regular expression for email validat
 7. `$`: Asserts the end of the line, ensuring that the email address ends at this point.
 
 In summary, this regular expression validates an email address by ensuring that it starts with a valid local part, followed by "@" symbol, a valid domain part, and ends with a valid domain extension. It's a comprehensive pattern for secure email validation.
+
+## Table of Contents
+
+- [Anchors](#anchors)
+- [Quantifiers](#quantifiers)
+- [Grouping Constructs](#grouping-constructs)
+- [Bracket Expressions](#bracket-expressions)
+- [Character Classes](#character-classes)
+- [The OR Operator](#the-or-operator)
+- [Flags](#flags)
+- [Character Escapes](#character-escapes)
+
+
 ### Anchors
+
+Anchors within a regular expression serve as indicators for the beginning and end points of the expression. In this particular expression, the `^` signifies the start of the expression, while the `$` signifies the end of the expression.
 
 ### Quantifiers
 
+Quantifiers are special characters that alter the behavior of the preceding character or character class in a regular expression, determining how many of them should be matched consecutively.
+
+Quantifiers enable the definition of the desired number of characters or character classes to be matched:
+
+- The `+` symbol matches one or more of the preceding character.
+- `{min, max}` specifies a precise numeric range for quantification (notice that this is employed at the end of the regex expression above to specify a range for the domain name system).
+
 ### Grouping Constructs
+In the regular expression `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$`, the grouping constructs are created using parentheses `(` and `)` to define capturing groups. These capturing groups are used to capture specific parts of the email address. Here's how each capturing group is constructed:
+
+1. Capturing Group 1: `([a-z0-9_\.-]+)`
+   - It starts with an opening parenthesis `(` to begin the capturing group.
+   - Inside the group, it specifies the character class `[a-z0-9_\.-]+`, which matches one or more lowercase letters, digits, underscores, dots, or hyphens.
+   - It ends with a closing parenthesis `)` to close the capturing group.
+   - This capturing group captures the local part (username) of the email address.
+
+2. Capturing Group 2: `([\da-z\.-]+)`
+   - Similar to the first group, it starts with an opening parenthesis `(`.
+   - Inside the group, it specifies the character class `[\da-z\.-]+`, which matches one or more lowercase letters, digits, dots, or hyphens.
+   - It ends with a closing parenthesis `)`.
+   - This capturing group captures the domain name part of the email address (excluding the TLD).
+
+3. Capturing Group 3: `([a-z\.]{2,6})`
+   - Again, it starts with an opening parenthesis `(`.
+   - Inside the group, it specifies the character class `[a-z\.]{2,6}`, which matches between 2 and 6 lowercase letters or dots.
+   - It ends with a closing parenthesis `)`.
+   - This capturing group captures the top-level domain (TLD) part of the email address.
+
+These capturing groups allow you to extract and work with specific segments of the matched email address when using this regular expression for tasks like validation or data extraction.
 
 ### Bracket Expressions
 
