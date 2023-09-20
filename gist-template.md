@@ -4,7 +4,27 @@ Regular expressions, often referred to as regex, refers to a distinct string usu
 
 ## Summary
 
-Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
+This tutorial will be covering the regex expression used for both matching and validating an email:
+
+As a software developer you are tasked with finding and securing non-secure email usages within a codebase, you can use the following regular expression for email validation and detection:
+
+```javascript
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
+```
+
+Here's an explanation of the regular expression:
+
+- `^[A-Za-z0-9._%+-]+`: This part matches the email's local part, which can contain letters (both uppercase and lowercase), digits, dots, underscores, percent signs, and plus or minus signs. It ensures that the local part starts at the beginning of the string.
+
+- `@`: This part matches the "@" symbol in the email.
+
+- `[A-Za-z0-9.-]+`: This part matches the domain name, which can contain letters (both uppercase and lowercase), digits, dots, and hyphens.
+
+- `\.`: This matches the dot (.) that separates the domain name from the domain extension.
+
+- `[A-Za-z]{2,6}`: This part matches the domain extension (e.g., .com, .net, .dev) and ensures it consists of 2 to 6 letters.
+
+By using this regular expression, you can quickly search through the codebase to identify and validate email addresses. You can also use it to enforce email validation in forms, ensuring that users enter valid email addresses before proceeding.
 
 ## Table of Contents
 
