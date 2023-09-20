@@ -1,6 +1,6 @@
 # Regular Expression - Matching an Email
 
-Regular expressions, often referred to as regex, refers to a distinct string usually made up of various sets of characters that can be used as both a query tool and a validator in code bases, as well as traditional documents. They were dervied in the early 1950s out of the concept of regular language coined by the mathemitician Stephen Cole Kleene. They became widely used in 1968 within the theoretical computer science field as a way to match patterns within text files and support lexical analysis. Although regular expressions are known for being extremely cryptic looking, when broken down piece by piece, one can see they are not quite as complex as they look to the untrained eye, and one could start writing their own regex expressions fairly easily.
+Regular expressions, often referred to as regex, refers to a distinct string usually made up of various sets of characters that can be used as both a query tool and a validator in code bases, as well as traditional documents. They were dervied in the early 1950s out of the concept of regular language coined by the mathemitician `Stephen Cole Kleene`. They became widely used in 1968 within the theoretical computer science field as a way to match patterns within text files and support lexical analysis. Although regular expressions are known for being extremely cryptic looking, when broken down piece by piece, one can see they are not quite as complex as they look to the untrained eye, and one could start writing their own regex expressions fairly easily.
 
 ## Summary
 
@@ -53,6 +53,10 @@ In summary, this regular expression validates an email address by ensuring that 
 - [The OR Operator](#the-or-operator)
 - [Flags](#flags)
 - [Character Escapes](#character-escapes)
+- [Greedy and Lazy Match](#greedy-and-lazy-match)
+- [Boundaries](#boundaries)
+- [Back-references](#back-references)
+- [Look-ahead and Look-behind](#look-ahead-and-look-behind)
 
 
 ### Anchors
@@ -104,13 +108,81 @@ For instance: `[a-z0-9_\.-]` can match any of the following:
 These brackets, when used in a regular expression, offer flexibility in specifying acceptable characters or character ranges for matching purposes.
 
 ### Character Classes
+Character classes are the attribute in a regex expression that allow us to define specific sets of characters that can be used in a search pattern.
+
+The character classes utilized in this regex expression are `[a-z0-9_\.-]`, `[\da-z\.-]`, and `[a-z\.]`.
+
+`[a-z0-9_\.-]`: `a-z` matches a single character in the range between a (index 97) and z (index 122) (case sensitive), `0-9` matches a single character in the range between 0 (index 48) and 9 (index 57) (case sensitive), `_` matches the character _ with index 9510 (5F16 or 1378) literally (case sensitive), `\.` matches the character . with index 4610 (2E16 or 568) literally (case sensitive), and `-` matches the character - with index 4510 (2D16 or 558) literally (case sensitive).
+
+`[\da-z\.-]`: `\d` can be used to match any digit (0-9), `a-z` matches a single character in the range between a (index 97) and z (index 122) (case sensitive), `\.` matches the character . with index 4610 (2E16 or 568) literally (case sensitive), and `-` matches the character - with index 4510 (2D16 or 558) literally (case sensitive).
+
+`[a-z\.]`: `a-z` matches a single character in the range between a (index 97) and z (index 122) (case sensitive), and `\.` matches the character . with index 4610 (2E16 or 568) literally (case sensitive)
+
+Other examples of single characters:
+
+`\d` can be used to match any digit (0-9), `\w` to match any alphanumeric character (a-zA-Z0-9), and `\s` any white space such as a space or a tab
 
 ### The OR Operator
+There are no OR operators within this particular regex expression but in general OR operators are represented with the pipe `|` and specified under the regex type of alternation.
 
 ### Flags
+Regex flags are employed to alter the behavior of an expression, affecting aspects such as case sensitivity. In JavaScript, there are only six available flags:
+
+-  `i`: Enables case-insensitive matching.
+-  `g`: Searches for all occurrences, not just the first match.
+-  `m`: Activates multiline mode, allowing `^` and `$` to match the start and end of each line.
+-  `s`: Enables "dotall" mode, permitting a dot `.` to match newline characters (`\n`).
+-  `u`: Provides comprehensive Unicode support for matching Unicode characters.
+-  `y`: Activates "sticky" mode, ensuring that the search starts at the current position in the target string.
+
+It's worth noting that the regex expression explained in this tutorial does not make use of any flags.
 
 ### Character Escapes
+Character escapes in regular expressions are used to match specific characters or character classes. Here are the character escapes for the flags mentioned in the previous response:
+
+ `\i`: Case-insensitive matching.
+ `\g`: Searches for all occurrences.
+ `\m`: Multiline mode.
+ `\s`: Dotall mode (matches newline characters with `.`).
+ `\u`: Unicode support.
+ `\y`: Sticky mode.
+
+These escapes are used to enable or disable the corresponding flag's behavior within a regular expression.
+
+### Greedy and Lazy Match
+
+In regular expressions, both greedy and lazy quantifiers are used to control how much text a quantifier should match. Here's the difference between the two:
+
+1. Greedy Quantifier: Greedy quantifiers match as much text as possible while still allowing the overall regex to match. They are represented by appending a quantifier with a `?`. For example, `*`, `+`, `?`, and `{}` can be made greedy by adding a `?` after them.
+
+   Greedy quantifiers try to match the maximum number of characters while still allowing the overall regex to succeed. For instance, in the regex `.*`, the `*` is greedy and will try to match as many characters as possible.
+
+2. Lazy (Non-Greedy) Quantifier: Lazy quantifiers match as little text as possible while still allowing the overall regex to match. They are represented by appending a quantifier with a `??`. For example, `*?`, `+?`, `??`, and `{}` can be made lazy by adding a `??` after them.
+
+   Lazy quantifiers try to match the minimum number of characters necessary for the overall regex to succeed. For example, in the regex `.*?`, the `*?` is lazy and will try to match as few characters as possible.
+
+Here's a brief summary of the two:
+
+- Greedy quantifiers (`*`, `+`, `?`, `{}` without `?`) match as much as possible.
+- Lazy quantifiers (`*?`, `+?`, `??`, `{}` with `??`) match as little as possible.
+
+
+### Boundaries
+
+`\b` is an example of a word boundary. It usually represents matching positions on either side; where once side is a word character and the other is something other than a word character.
+
+Word boundaries are particularlly useful when you want to match a sequence of letters or digits on their own, to ensure they occur at the beginnning or end of a specific sequence of characters.
+
+### Back-references
+
+Back-references are commands which refer to a previous part of the matched regualr expression. They are generally specified with a backslash and a single digit `\2`
+
+### Look-ahead and Look-behind
+
+Usually represented with `?=foo`, look-ahead represents what immediately follows the string "foo", while look-behind, the inverse, is notated as `?<=foo` and represents what immediately precedes the string "foo".
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+I am a passionate and aspiring developer with in depth knowledege of full stack applications and know languages like Java, Javascript, Express, Node JS, Python, SQL and many more. 
+If you have any questions about this projects, please contact me directly at <a href="mailto:alekhyavinni12@gmail.com">alekhyavinni12@gmail.com</a>
+You can view more of my projects at [Link to Github](https://github.com/alekhyavinni)
